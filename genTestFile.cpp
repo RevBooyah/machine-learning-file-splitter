@@ -85,25 +85,26 @@ int main(int argc, char* argv[]) {
         srand(time(NULL));
         for(int x=0;x<testLines;x++) {
                 rline=((double) rand() / (RAND_MAX)) *(totalLines+1);
-                cout << x << " := " << rline << "\n";
+                //cout << x << " := " << rline << "\n";
                 //lines[rline]=true;
                 unordered_map<int,bool>::const_iterator got = lines.find (rline);
                 if(got == lines.end()) {
                         lines.insert(make_pair<int,int>(rline,true));
-                        cout << "Added " << rline << std::endl;
+                        //cout << "Added " << rline << std::endl;
                 } else {
                         x--;
-                        cout << "Got a duplicate: " << rline << std::endl;
+                        //cout << "Got a duplicate: " << rline << std::endl;
                 }
         }
 
+		/*
+		* uncomment if you want to see which line numbers were selected.
         for (auto it = lines.begin(); it != lines.end(); ++it) {
                 cout << it->first << endl;
         }
-
-
         cin.get();
-
+		*/
+		
         // Reset read from input file
         ifile.clear();
         ifile.seekg(0,ios::beg);
@@ -125,9 +126,11 @@ int main(int argc, char* argv[]) {
                 //cout << tmp << "\n";
                 x++;
         }
-        trainFile.close();
+        
+		// Close the files.
+		trainFile.close();
         testFile.close();
 
-        return 0;
+        return 1;
     }
 }
